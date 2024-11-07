@@ -22,5 +22,14 @@ def show_banner():
     print("|  Sistem Monitoring Gempa Indonesia   |")
     print("=" * 40)
 
+def read_all_record():
+    with open(csv_file, mode="r", encoding="utf-8-sig") as file:
+        reader = csv.reader(file, delimiter=";")
+        record = []
+        for row in reader:
+            record.append(row)
+            
+    return record
+
 
 show_banner()
