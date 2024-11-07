@@ -197,6 +197,24 @@ def update_record_form(waktu_gempa: str):
 
     return print(result)
 
+def delete_record(waktu_gempa: str):
+    current_records = read_all_record()
+    new_records = []
+    found = False
+
+    for record in current_records:
+        if record and record[0] != waktu_gempa:
+            new_records.append(record)
+        else:
+            found = True
+    
+    if found:
+        with open(csv_file, mode="w", newline="") as file:
+            writer = csv.writer(file, delimiter=";")
+            writer.writerows(new_records)
+        return print("Data berhasil dihapus.")
+    else:
+        return print("Data tidak ditemukan.")
 
 show_banner()
 show_latest_earthquake()
