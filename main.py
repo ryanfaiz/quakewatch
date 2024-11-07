@@ -151,6 +151,52 @@ def add_record_form():
     
     return print(result)
 
+def update_record(waktu_gempa: str, updated_record: list):
+    current_records = read_all_record()
+
+    for index in range(0, len(current_records) - 1, 1):
+        if current_records and current_records[index][0] == waktu_gempa:
+            current_records[index] = updated_record
+    
+    with open(csv_file, mode="w", newline="") as file:
+            writer = csv.writer(file, delimiter=";")
+            writer.writerows(current_records)
+
+    return "Data berhasil diperbarui."
+
+def update_record_form(waktu_gempa: str):
+    record = read_specific_record(waktu_gempa)
+
+    if not record:
+        return print("Data tidak ditemukan.")
+
+    waktu = record[0]
+    print(f"Waktu Gempa (UTC): {record[0]}")
+    lintang = input(f"Lintang ({record[1]}): ")
+    bujur = input(f"Bujur ({record[2]}): ")
+    magnitudo = input(f"Magnittudo ({record[3]}): ")
+    kedalaman = input(f"Kedalaman (Km) ({record[4]}): ")
+    wilayah = input(f"Wilayah ({record[5]}): ")
+    status = input(f"Status (Confirmed/Not Confirmed) ({record[6]}): ")
+    detail = input(f"Detail (Link BMKG) ({record[7]}): ")
+
+    updated_record = [waktu, lintang, bujur, magnitudo, kedalaman, wilayah, status, detail]
+
+    for i in range(0, len(updated_record) - 1, 1):
+        if updated_record[i] == "":
+            updated_record[i] = record[i]
+
+    lintang = round(int(lintang), 2)
+    bujur = round(int(bujur), 2)
+    magnitudo = int(magnitudo)
+    kedalaman = int(kedalaman)
+
+    updated_record = [waktu, lintang, bujur, magnitudo, kedalaman, wilayah, status, detail]
+
+    result = update_record(waktu_gempa, updated_record)
+
+    return print(result)
+
 
 show_banner()
 show_latest_earthquake()
