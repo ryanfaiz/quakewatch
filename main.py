@@ -59,4 +59,20 @@ def show_all_record():
         formatted_row = "| " + " | ".join(f"{str(item):<{column_widths[i]}}" for i, item in enumerate(row)) + " |"
         print(formatted_row)
 
+def show_specific_record(waktu_gempa: str):
+    record = read_specific_record(waktu_gempa)
+
+    if not record:
+        return print("Data gempa bumi terakhir tidak ditemukan.")
+    
+    print("Detail Gempa Bumi")
+    print(f"  Waktu Gempa (UTC): {record[0]}")
+    print(f"  Lintang: {record[1]}")
+    print(f"  Bujur: {record[2]}")
+    print(f"  Magnitudo: {record[3]}")
+    print(f"  Kedalaman (Km): {record[4]}")
+    print(f"  Wilayah: {record[5]}")
+    print(f"  Status: {record[6]}")
+    print(f"  Detail: {record[7]}")
+
 show_banner()
