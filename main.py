@@ -31,6 +31,16 @@ def read_all_record():
             
     return record
 
+def read_specific_record(waktu_gempa: str):
+    records = read_all_record()
+    record = []
+
+    for row in records:
+        if row and row[0] == waktu_gempa:
+            record = row
+    
+    return record
+
 def minimize_record():
     record = read_all_record()
     minimized_record = []
