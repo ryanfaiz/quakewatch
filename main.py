@@ -31,5 +31,22 @@ def read_all_record():
             
     return record
 
+def minimize_record():
+    record = read_all_record()
+    minimized_record = []
+    for row in record:
+        filtered_record = []
+        for index in minimal_headers_index:
+            filtered_record.append(row[index])
+        minimized_record.append(filtered_record)
+
+    return minimized_record
+
+def show_all_record():
+    record = minimize_record()
+    for row in record:         
+        # Format and print the filtered row
+        formatted_row = "| " + " | ".join(f"{str(item):<{column_widths[i]}}" for i, item in enumerate(row)) + " |"
+        print(formatted_row)
 
 show_banner()
