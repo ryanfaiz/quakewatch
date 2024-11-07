@@ -75,4 +75,23 @@ def show_specific_record(waktu_gempa: str):
     print(f"  Status: {record[6]}")
     print(f"  Detail: {record[7]}")
 
+def show_latest_earthquake():
+    records = read_all_record()
+    latest_record = records[1]
+
+    if not latest_record:
+        return print("Data gempa bumi terakhir tidak ditemukan.")
+    
+    print("\nGempa Bumi Terkini:")
+    print(f"  Waktu Gempa (UTC): {latest_record[0]}")
+    print(f"  Lintang: {latest_record[1]}")
+    print(f"  Bujur: {latest_record[2]}")
+    print(f"  Magnitudo: {latest_record[3]}")
+    print(f"  Kedalaman (Km): {latest_record[4]}")
+    print(f"  Wilayah: {latest_record[5]}")
+    print(f"  Status: {latest_record[6]}")
+    print(f"  Detail: {latest_record[7]}")
+
+
 show_banner()
+show_latest_earthquake()
