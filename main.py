@@ -316,13 +316,14 @@ def footer():
     print("-" * 85)
     print("| Tekan: U untuk memperbarui data gempa       | C untuk membuat data gempa baru     |")
     print("-" * 85)
-    print("| Tekan: E untuk keluar dari aplikasi         | D untuk menghapus data gempa        |")
+    print("| Tekan: O untuk melihat detail data gempa    | D untuk menghapus data gempa        |")
     print("-" * 85)
     print("| Tekan: F untuk mencari gempa dengan wilayah | S untuk menyalakan sortir data gempa|")
     if check_sort_by_time():
         print("-" * 85)
         print("| Tekan: [ untuk mengurutkan data gempa berdasarkan waktu gempa terbaru             |")
         print("| Tekan: ] untuk mengurutkan data gempa berdasarkan waktu gempa terlama             |")
+        print("| Tekan: E untuk keluar dari aplikasi                                               |")
     print("=" * 85)
 
     choice = input("").lower()  # Input dari pengguna sebagai pilihan
@@ -341,6 +342,8 @@ def footer():
         return "l"
     elif choice == "n":
         return "n"
+    elif choice == "o":
+        return "o"
     elif choice == "s":
         return "s"
     elif choice == "u":
@@ -390,6 +393,15 @@ def main():
             clear_screen()
             show_banner()
             show_latest_earthquake()
+        elif action == "o":
+            clear_screen()
+            show_banner()
+            show_all_record()
+            print()
+            waktu_gempa = input("Masukkan Waktu Gempa (UTC) untuk dibuka: ")
+            clear_screen()
+            show_banner()
+            show_specific_record(waktu_gempa)
         elif action == "s":
             clear_screen()
             show_banner()
@@ -399,7 +411,6 @@ def main():
             show_banner()
             waktu_gempa = input("Masukkan Waktu Gempa (UTC) untuk diperbarui: ")
             update_record_form(waktu_gempa)
-
 
 if __name__ == "__main__":
     clear_screen()
