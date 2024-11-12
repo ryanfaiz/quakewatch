@@ -319,11 +319,12 @@ def footer():
     print("| Tekan: O untuk melihat detail data gempa    | D untuk menghapus data gempa        |")
     print("-" * 85)
     print("| Tekan: F untuk mencari gempa dengan wilayah | S untuk menyalakan sortir data gempa|")
+    print("-" * 85)
+    print("| Tekan: E untuk keluar dari aplikasi                                               |")
     if check_sort_by_time():
         print("-" * 85)
         print("| Tekan: [ untuk mengurutkan data gempa berdasarkan waktu gempa terbaru             |")
         print("| Tekan: ] untuk mengurutkan data gempa berdasarkan waktu gempa terlama             |")
-        print("| Tekan: E untuk keluar dari aplikasi                                               |")
     print("=" * 85)
 
     choice = input("").lower()  # Input dari pengguna sebagai pilihan
