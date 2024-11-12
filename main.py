@@ -378,7 +378,11 @@ def main():
         elif action == "d":
             clear_screen()
             show_banner()
+            show_all_record()
+            print()
             waktu_gempa = input("Masukkan Waktu Gempa (UTC) untuk dihapus: ")
+            clear_screen()
+            show_banner()
             delete_record(waktu_gempa)
         elif action == "f":
             clear_screen()
@@ -409,7 +413,11 @@ def main():
         elif action == "u":
             clear_screen()
             show_banner()
+            show_all_record()
+            print()
             waktu_gempa = input("Masukkan Waktu Gempa (UTC) untuk diperbarui: ")
+            clear_screen()
+            show_banner()
             update_record_form(waktu_gempa)
 
 if __name__ == "__main__":
