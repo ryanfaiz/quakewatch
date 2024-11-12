@@ -327,28 +327,28 @@ def footer():
 
     choice = input("").lower()  # Input dari pengguna sebagai pilihan
 
-    if choice == "l":
-        return "l"
+    if choice == "[":
+        return "["
+    elif choice == "]":
+        return "]"
     elif choice == "c":
         return "c"
     elif choice == "d":
         return "d"
-    elif choice == "u":
-        return "u"
-    elif choice == "n":
-        return "n"
     elif choice == "f":
         return "f"
+    elif choice == "l":
+        return "l"
+    elif choice == "n":
+        return "n"
     elif choice == "s":
         return "s"
-    elif choice == "[":
-        return "["
-    elif choice == "]":
-        return "]"
+    elif choice == "u":
+        return "u"
     elif choice == "e":
         print("Terima kasih. Semoga harimu menyenangkan.")
         exit()
-    
+
     return None
 
 def main():
