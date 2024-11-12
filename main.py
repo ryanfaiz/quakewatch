@@ -1,7 +1,5 @@
 import csv
 import os
-import keyboard
-import time
 
 option_file = "option.txt"
 csv_file = "data-gempa.csv"
