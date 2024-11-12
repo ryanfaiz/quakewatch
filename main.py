@@ -300,8 +300,8 @@ def check_sort_by_time():
             if "sort_by_time=True" in line:
                 return True
 
-def switch_sort_by_time_desc(Switch: str):
-    if Switch == "[":
+def switch_sort_by_time_desc(switch: str):
+    if switch == "[":
         with open(option_file, "w") as file:
             file.write(f"sort_by_time=True, sort_by_time_desc=False")
     else:
