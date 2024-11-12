@@ -303,10 +303,10 @@ def check_sort_by_time():
 def switch_sort_by_time_desc(switch: str):
     if switch == "[":
         with open(option_file, "w") as file:
-            file.write(f"sort_by_time=True, sort_by_time_desc=False")
+            file.write("sort_by_time=True, sort_by_time_desc=False")
     else:
         with open(option_file, "w") as file:
-            file.write(f"sort_by_time=True, sort_by_time_desc=True")	
+            file.write("sort_by_time=True, sort_by_time_desc=True")	
 
 def footer():
     print("=" * 85)
