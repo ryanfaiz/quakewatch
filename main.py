@@ -1,7 +1,7 @@
 import csv
 import os
 
-option_file = "option.txt"
+option_file = "options.txt"
 csv_file = "data-gempa.csv"
 headers = [
     "Waktu Gempa (UTC)",
