@@ -352,50 +352,50 @@ def footer():
     return None
 
 def main():
-    Cycle = True
+    cycle = True
     show_banner()
     show_all_record()
-    while Cycle:
-        Action = footer()
+    while cycle:
+        action = footer()
         
-        if Action == "l":
+        if action == "l":
             clear_screen()
             show_banner()
             show_all_record()
-        elif Action == "c":
+        elif action == "c":
             clear_screen()
             show_banner()
             add_record_form()
-        elif Action == "d":
+        elif action == "d":
             clear_screen()
             show_banner()
             waktu_gempa = input("Masukkan Waktu Gempa (UTC) untuk dihapus: ")
             delete_record(waktu_gempa)
-        elif Action == "u":
+        elif action == "u":
             clear_screen()
             show_banner()
             waktu_gempa = input("Masukkan Waktu Gempa (UTC) untuk diperbarui: ")
             update_record_form(waktu_gempa)
-        elif Action == "f":
+        elif action == "f":
             clear_screen()
             show_banner()
             region = input("Masukkan wilayah: ")
             search_record_by_region(region)
-        elif Action == "s":
+        elif action == "s":
             clear_screen()
             show_banner()
             turn_onandoff_sort_by_time()
-        elif Action == "[":
+        elif action == "[":
             clear_screen()
             show_banner()
             switch_sort_by_time_desc("[")
             show_all_record()
-        elif Action == "]":
+        elif action == "]":
             clear_screen()
             show_banner()
             switch_sort_by_time_desc("]")
             show_all_record()
-        elif Action == "n":
+        elif action == "n":
             clear_screen()
             show_banner()
             show_latest_earthquake()
