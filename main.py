@@ -27,9 +27,8 @@ def show_banner():
     print("|                          Sistem Monitoring Gempa Indonesia                        |")
     print("=" * 85)
 
-#  Fungsi untuk membaca data
-
 def read_all_record():
+    '''Membaca semua record yang terdapat di data-gempa.csv, lalu mengembalikannya dalam format list.'''
     with open(csv_file, mode="r", encoding="utf-8-sig") as file:
         reader = csv.reader(file, delimiter=";")
         record = []
@@ -39,6 +38,7 @@ def read_all_record():
     return record
 
 def read_specific_record(waktu_gempa: str):
+    '''Membaca data spesifik sesuai parameter waktu_gempa dari semua data. Mengembalikan dalam format list.'''
     records = read_all_record()
     record = []
 
@@ -49,6 +49,7 @@ def read_specific_record(waktu_gempa: str):
     return record
 
 def read_record_by_region(region: str):
+    '''Membaca data sesuai dengan parameter regional. Mengembalikan data dalam bentuk list'''
     records = read_all_record()
     matched_records = []
 
@@ -58,9 +59,8 @@ def read_record_by_region(region: str):
     
     return matched_records
 
-# Fungsi meminimalisir
-
 def minimize_record():
+    '''Mengurangi data yang ditampilkan pada kolom tabel dan menampilkannya secara berurutan berdasarkan waktu gempa.'''
     record = read_all_record()
     
     # Membaca status sortir dari file pengaturan
@@ -82,15 +82,15 @@ def minimize_record():
         
     return minimized_record
 
-# Fungsi menampilkan
-
 def show_all_record():
+    '''Menampilkan semua data dalam bentuk tabel yang sudah diformat.'''
     record = minimize_record()
     for row in record:         
         formatted_row = "| " + " | ".join(f"{str(item):<{column_widths[i]}}" for i, item in enumerate(row)) + " |"
         print(formatted_row)
 
 def show_specific_record(waktu_gempa: str):
+    '''Menampilkan detail spesifik gempa berdasarkan waktu gempa.'''
     record = read_specific_record(waktu_gempa)
 
     if not record:
@@ -107,6 +107,7 @@ def show_specific_record(waktu_gempa: str):
     print(f"  Detail: {record[7]}")
 
 def show_latest_earthquake():
+    '''Menampilkan detail gempa terakhir yang terdapat di data-gempa.csv'''
     records = read_all_record()
     latest_record = records[1]
 
@@ -123,9 +124,8 @@ def show_latest_earthquake():
     print(f"  Status: {latest_record[6]}")
     print(f"  Detail: {latest_record[7]}\n")
 
-# Fungsi menambah
-
 def create_record(record):
+    '''Menambahkan data baru ke dalam data-gempa.csv'''
     current_records = read_all_record()
     
     current_records.insert(1, record)
@@ -137,6 +137,7 @@ def create_record(record):
     return "Data berhasil ditambahkan."
 
 def validate_form(record: list):
+    '''Melakukan validasi data yang akan ditambahkan'''
     desc = []
 
     for item in record:
@@ -150,6 +151,7 @@ def validate_form(record: list):
     return desc
 
 def add_record_form():
+    '''Formulir pengisian data gempa baru'''
     waktu = input("Waktu Gempa (UTC) (DD/MM/YYYY HH:MM): ")
     lintang = input("Lintang: ")
     bujur = input("Bujur: ")
@@ -184,9 +186,8 @@ def add_record_form():
     
     return print(result)
 
-# Fungsi merubah
-
 def update_record(waktu_gempa: str, updated_record: list):
+    '''Memperbarui data gempa berdasarkan parameter waktu_gempa'''
     current_records = read_all_record()
 
     for index in range(0, len(current_records) - 1, 1):
@@ -200,6 +201,7 @@ def update_record(waktu_gempa: str, updated_record: list):
     return "Data berhasil diperbarui."
 
 def update_record_form(waktu_gempa: str):
+    '''Formulir pembaruan data gempa'''
     record = read_specific_record(waktu_gempa)
 
     if not record:
@@ -232,9 +234,8 @@ def update_record_form(waktu_gempa: str):
 
     return print(result)
 
-# Fungsi menghapus
-
 def delete_record(waktu_gempa: str):
+    '''Menghapus data gempa spesifik dari data-gempa.csv'''
     current_records = read_all_record()
     new_records = []
     found = False
@@ -253,9 +254,8 @@ def delete_record(waktu_gempa: str):
     else:
         return print("Data tidak ditemukan.")
 
-# Fungsi mencari
-
 def search_record_by_region(region: str):
+    '''Mencari data gempa berdasarkan region dan menampilkan dalam bentuk tabel.'''
     record = read_record_by_region(region)
 
     if not record:
@@ -277,11 +277,8 @@ def search_record_by_region(region: str):
 
     print("=" * len(formatted_header))
 
-
-
-# Fungsi mensortir berdasarkan waktu gempa
-
 def turn_onandoff_sort_by_time():
+    '''Fitur flag pada `options.txt` berdasarkan waktu gempa'''
     with open(option_file, "r") as file:
         content = file.read()
     
@@ -292,15 +289,16 @@ def turn_onandoff_sort_by_time():
 
     with open(option_file, "w") as file:
         file.write(new_content)
-
     
 def check_sort_by_time():
+    '''Melakukan pengecekkan status fitur flag pada `options.txt`'''
     with open(option_file, "r") as file:
         for line in file:
             if "sort_by_time=True" in line:
                 return True
 
 def switch_sort_by_time_desc(switch: str):
+    '''Melakukan sort berdasarkan waktu'''
     if switch == "[":
         with open(option_file, "w") as file:
             file.write("sort_by_time=True, sort_by_time_desc=False")
@@ -309,6 +307,7 @@ def switch_sort_by_time_desc(switch: str):
             file.write("sort_by_time=True, sort_by_time_desc=True")	
 
 def footer():
+    '''Menu navigasi sesuai input user'''
     print("=" * 85)
     print("|                                    Opsi Menu                                      |")
     print("-" * 85)
@@ -356,6 +355,7 @@ def footer():
     return None
 
 def main():
+    '''Menjalankan perulangan dan sebagai logic navigasi'''
     cycle = True
     show_banner()
     show_all_record()
