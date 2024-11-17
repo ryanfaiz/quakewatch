@@ -23,8 +23,14 @@ def clear_screen():
 
 def show_banner():
     print("=" * 85)
-    print("|                                     EarthQuake                                    |")
+    print("|               _____           _   _      ___              _                       |")
+    print("|              | ____|__ _ _ __| |_| |__  / _ \ _   _  __ _| | _____                |")
+    print("|              |  _| / _` | '__| __| '_ \\| | | | | | |/ _` | |/ / _ \\               |")
+    print("|              | |__| (_| | |  | |_| | | | |_| | |_| | (_| |   <  __/               |")
+    print("|              |_____\__,_|_|   \\__|_| |_|\\__\\_\\__,_|\\__,_|_|\\_\\___|                |")
     print("|                          Sistem Monitoring Gempa Indonesia                        |")
+    print("|                       Monitor the Earth, Protect What Matters                     |")
+    print("|                                                                                   |")
     print("=" * 85)
 
 def read_all_record():
