@@ -16,7 +16,6 @@ headers = [
 minimal_headers = ["Waktu Gempa (UTC)", "Magnitudo", "Wilayah", "Status"]
 minimal_headers_index = [0,3,5,6]
 column_widths = [18, 10, 30, 14]
-list_show = []
 
 def clear_screen():
     os.system("cls" if os.name == "nt" else "clear")
@@ -328,8 +327,8 @@ def footer():
     print("| Tekan: E untuk keluar dari aplikasi                                               |")
     if check_sort_by_time():
         print("-" * 85)
-        print("| Tekan: [ untuk mengurutkan data gempa berdasarkan waktu gempa terbaru             |")
-        print("| Tekan: ] untuk mengurutkan data gempa berdasarkan waktu gempa terlama             |")
+        print("| Tekan: [ untuk mengurutkan data gempa berdasarkan waktu gempa terlama             |")
+        print("| Tekan: ] untuk mengurutkan data gempa berdasarkan waktu gempa terbaru             |")
     print("=" * 85)
 
     choice = input("").lower()  # Input dari pengguna sebagai pilihan
@@ -355,6 +354,7 @@ def footer():
     elif choice == "u":
         return "u"
     elif choice == "e":
+        clear_screen()
         print("Terima kasih. Semoga harimu menyenangkan.")
         exit()
 
@@ -416,6 +416,7 @@ def main():
         elif action == "s":
             clear_screen()
             show_banner()
+            show_all_record()
             turn_onandoff_sort_by_time()
         elif action == "u":
             clear_screen()
