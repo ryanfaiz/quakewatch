@@ -90,6 +90,12 @@ def minimize_record():
 def show_all_record():
     '''Menampilkan semua data dalam bentuk tabel yang sudah diformat.'''
     record = minimize_record()
+
+    formatted_header = "| " + " | ".join(f"{header:<{column_widths[i]}}" for i, header in enumerate(minimal_headers)) + " |"
+    print("=" * len(formatted_header))
+    print(formatted_header)
+    print("=" * len(formatted_header))
+    
     for row in record:         
         formatted_row = "| " + " | ".join(f"{str(item):<{column_widths[i]}}" for i, item in enumerate(row)) + " |"
         print(formatted_row)
