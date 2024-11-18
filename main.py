@@ -188,8 +188,8 @@ def add_record_form():
             return
     lintang = round(float(lintang), 2)
     bujur = round(float(bujur), 2)
-    magnitudo = float(magnitudo)
-    kedalaman = int(kedalaman)
+    magnitudo = round(float(magnitudo), 2)
+    kedalaman = round(float(kedalaman), 2)
 
     record = [waktu, lintang, bujur, magnitudo, kedalaman, wilayah, status, detail]
 
@@ -248,8 +248,8 @@ def update_record_form(waktu_gempa: str):
     # Validasi dan konversi
     lintang = round(float(lintang), 2) if lintang else float(record[1])
     bujur = round(float(bujur), 2) if bujur else float(record[2])
-    magnitudo = float(magnitudo) if magnitudo else float(record[3])
-    kedalaman = int(kedalaman) if kedalaman else int(record[4])
+    magnitudo = round(float(magnitudo), 2) if magnitudo else float(record[3])
+    kedalaman = round(float(kedalaman), 2) if kedalaman else float(record[4])
     wilayah = wilayah if wilayah else record[5]
     status = status if status else record[6]
     detail = detail if detail else record[7]
