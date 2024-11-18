@@ -95,7 +95,7 @@ def show_all_record():
     print("=" * len(formatted_header))
     print(formatted_header)
     print("=" * len(formatted_header))
-    
+
     for row in record:         
         formatted_row = "| " + " | ".join(f"{str(item):<{column_widths[i]}}" for i, item in enumerate(row)) + " |"
         print(formatted_row)
@@ -186,9 +186,9 @@ def add_record_form():
             add_record_form()
         else:
             return
-    lintang = round(int(lintang), 2)
-    bujur = round(int(bujur), 2)
-    magnitudo = int(magnitudo)
+    lintang = round(float(lintang), 2)
+    bujur = round(float(bujur), 2)
+    magnitudo = float(magnitudo)
     kedalaman = int(kedalaman)
 
     record = [waktu, lintang, bujur, magnitudo, kedalaman, wilayah, status, detail]
@@ -199,17 +199,34 @@ def add_record_form():
 
 def update_record(waktu_gempa: str, updated_record: list):
     '''Memperbarui data gempa berdasarkan parameter waktu_gempa'''
+    import os
+    
+    if not os.path.exists(csv_file):
+        return "File CSV tidak ditemukan."
+
     current_records = read_all_record()
 
-    for index in range(0, len(current_records) - 1, 1):
-        if current_records and current_records[index][0] == waktu_gempa:
+    updated = False
+    for index in range(len(current_records)):
+        if current_records[index][0] == waktu_gempa:
+            if len(updated_record) != len(current_records[index]):
+                return "Format data tidak cocok dengan CSV."
             current_records[index] = updated_record
-    
-    with open(csv_file, mode="w", newline="") as file:
+            updated = True
+
+    if not updated:
+        return "Data tidak ditemukan untuk waktu gempa yang diberikan."
+
+    try:
+        with open(csv_file, mode="w", newline="", encoding="utf-8-sig") as file:
             writer = csv.writer(file, delimiter=";")
             writer.writerows(current_records)
+        return "Data berhasil diperbarui."
+    except FileNotFoundError:
+        return "File CSV tidak ditemukan."
+    except Exception as e:
+        return f"Terjadi kesalahan: {e}"
 
-    return "Data berhasil diperbarui."
 
 def update_record_form(waktu_gempa: str):
     '''Formulir pembaruan data gempa'''
@@ -228,22 +245,21 @@ def update_record_form(waktu_gempa: str):
     status = input(f"Status (Confirmed/Not Confirmed) ({record[6]}): ")
     detail = input(f"Detail (Link BMKG) ({record[7]}): ")
 
-    updated_record = [waktu, lintang, bujur, magnitudo, kedalaman, wilayah, status, detail]
-
-    for i in range(0, len(updated_record) - 1, 1):
-        if updated_record[i] == "":
-            updated_record[i] = record[i]
-
-    lintang = round(int(lintang), 2)
-    bujur = round(int(bujur), 2)
-    magnitudo = int(magnitudo)
-    kedalaman = int(kedalaman)
+    # Validasi dan konversi
+    lintang = round(float(lintang), 2) if lintang else float(record[1])
+    bujur = round(float(bujur), 2) if bujur else float(record[2])
+    magnitudo = float(magnitudo) if magnitudo else float(record[3])
+    kedalaman = int(kedalaman) if kedalaman else int(record[4])
+    wilayah = wilayah if wilayah else record[5]
+    status = status if status else record[6]
+    detail = detail if detail else record[7]
 
     updated_record = [waktu, lintang, bujur, magnitudo, kedalaman, wilayah, status, detail]
 
     result = update_record(waktu_gempa, updated_record)
 
     return print(result)
+
 
 def delete_record(waktu_gempa: str):
     '''Menghapus data gempa spesifik dari data-gempa.csv'''

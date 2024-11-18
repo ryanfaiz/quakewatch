@@ -1,4 +1,4 @@
-Waktu Gempa (UTC);Lintang;Bujur;Magnitudo;Kedalaman (Km);Wilayah;Status;Detail
+﻿Waktu Gempa (UTC);Lintang;Bujur;Magnitudo;Kedalaman (Km);Wilayah;Status;Detail
 03/11/2024 01:48;-8.78;118.34;2.6;10;Sumbawa Region-Indonesia;Confirmed;https://inatews.bmkg.go.id/web/detail2?name=bmg2024vpba
 02/11/2024 23:54;0.44;126.60;4.4;37;Northern Molucca Sea;Confirmed;https://inatews.bmkg.go.id/web/detail2?name=bmg2024voxg
 02/11/2024 23:03;-8.12;116.44;3.8;11;Sumbawa Region-Indonesia;Confirmed;https://inatews.bmkg.go.id/web/detail2?name=bmg2024vovo
@@ -23,4 +23,4 @@ Waktu Gempa (UTC);Lintang;Bujur;Magnitudo;Kedalaman (Km);Wilayah;Status;Detail
 02/11/2024 05:03;-17.86;-178.55;5.8;592;Fiji Islands Region;Confirmed;https://inatews.bmkg.go.id/web/detail2?name=bmg2024vnlz
 02/11/2024 03:14;-7.04;126.70;4.4;397;Banda Sea;Confirmed;https://inatews.bmkg.go.id/web/detail2?name=bmg2024vnii
 01/11/2024 23:00;7.30;125.98;4.7;57;Mindanao-Philippines;Confirmed;https://inatews.bmkg.go.id/web/detail2?name=bmg2024vmzy
-01/11/2024 22:16;-1.33;120.54;3.0;5;Sulawesi-Indonesia;Confirmed;https://inatews.bmkg.go.id/web/detail2?name=bmg2024vmyn
+01/11/2024 22:16;2.0;120.0;4.0;5;Sulawesi-Indonesia;Confirmed;https://inatews.bmkg.go.id/web/detail2?name=bmg2024vmyn
