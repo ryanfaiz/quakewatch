@@ -333,7 +333,7 @@ def switch_sort_by_time_desc(switch: str):
         with open(option_file, "w") as file:
             file.write("sort_by_time=True, sort_by_time_desc=True")	
 
-def footer():
+def footer(tempaction: str):
     '''Menu navigasi sesuai input user'''
     print("=" * 85)
     print("|                                    Opsi Menu                                      |")
@@ -353,7 +353,7 @@ def footer():
         print("| Tekan: ] untuk mengurutkan data gempa berdasarkan waktu gempa terbaru             |")
     print("=" * 85)
 
-    choice = input("").lower()  # Input dari pengguna sebagai pilihan
+    choice = input("Tekan: ").lower()  # Input dari pengguna sebagai pilihan
 
     if choice == "[":
         return "["
@@ -379,76 +379,58 @@ def footer():
         clear_screen()
         print("Terima kasih. Semoga harimu menyenangkan.")
         exit()
-
-    return None
+    else:
+        return tempaction
+    
 
 def main():
     '''Menjalankan perulangan dan sebagai logic navigasi'''
     cycle = True
-    show_banner()
-    show_all_record()
+    action = None
+    tempaction = None
     while cycle:
-        action = footer()
-        
-        if action == "[":
-            clear_screen()
-            show_banner()
+        clear_screen()
+        show_banner()
+        if action == None:
+            show_all_record()
+        elif action == "[":
             switch_sort_by_time_desc("[")
             show_all_record()
         elif action == "]":
-            clear_screen()
-            show_banner()
             switch_sort_by_time_desc("]")
             show_all_record()
         elif action == "c":
-            clear_screen()
-            show_banner()
             add_record_form()
         elif action == "d":
-            clear_screen()
-            show_banner()
             show_all_record()
-            print()
+            print("=" * 85)
             waktu_gempa = input("Masukkan Waktu Gempa (UTC) untuk dihapus: ")
-            clear_screen()
-            show_banner()
             delete_record(waktu_gempa)
         elif action == "f":
-            clear_screen()
-            show_banner()
             region = input("Masukkan wilayah: ")
             search_record_by_region(region)
         elif action == "l":
-            clear_screen()
-            show_banner()
             show_all_record()
         elif action == "n":
-            clear_screen()
-            show_banner()
             show_latest_earthquake()
         elif action == "o":
-            clear_screen()
-            show_banner()
             show_all_record()
-            print()
+            print("=" * 85)
             waktu_gempa = input("Masukkan Waktu Gempa (UTC) untuk dibuka: ")
-            clear_screen()
-            show_banner()
             show_specific_record(waktu_gempa)
         elif action == "s":
-            clear_screen()
-            show_banner()
             show_all_record()
             turn_onandoff_sort_by_time()
         elif action == "u":
-            clear_screen()
-            show_banner()
             show_all_record()
-            print()
+            print("=" * 85)
             waktu_gempa = input("Masukkan Waktu Gempa (UTC) untuk diperbarui: ")
-            clear_screen()
-            show_banner()
             update_record_form(waktu_gempa)
+
+        tempaction = action
+        action = footer(tempaction)
+        
+        
 
 if __name__ == "__main__":
     clear_screen()
